@@ -67,6 +67,7 @@ class BudgetBuddy:
         self.history_text.pack(pady=5)
         self.history_text.tag_configure("bold", font=(label_font[0], label_font[1], 'bold'))
 
+        tk.Button(self.page2, text="Clear History", font=button_font, bg=button_bg, fg=button_fg, command=self.clear_history).pack(pady=10)
         tk.Button(self.page2, text="Kembali", font=button_font, bg=button_bg, fg=button_fg, command=self.show_page1).pack(pady=10)
 
         self.page1.pack()
@@ -118,6 +119,10 @@ class BudgetBuddy:
             end_idx = self.history_text.index(tk.END + "-1l")
             self.history_text.tag_add("bold", start_idx, start_idx + "+10c")
 
+    def clear_history(self):
+        self.history=[]
+        self.update_history()
+    
     def show_page1(self):
         self.page2.pack_forget()
         self.page1.pack()
